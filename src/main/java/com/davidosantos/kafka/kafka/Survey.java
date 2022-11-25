@@ -5,6 +5,7 @@
  */
 package com.davidosantos.kafka.kafka;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
@@ -12,26 +13,26 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class User extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2977229910224855647L;
+public class Survey extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -7051110156260306261L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"com.davidosantos.kafka.kafka\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\",\"default\":\"none\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Survey\",\"namespace\":\"com.davidosantos.kafka.kafka\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"user_id\",\"type\":\"long\"},{\"name\":\"email\",\"type\":\"string\",\"default\":\"none\"},{\"name\":\"best_actor_for_me\",\"type\":\"string\",\"default\":\"none\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<User> ENCODER =
+  private static final BinaryMessageEncoder<Survey> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<User> DECODER =
+  private static final BinaryMessageDecoder<Survey> DECODER =
       new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<User> getEncoder() {
+  public static BinaryMessageEncoder<Survey> getEncoder() {
     return ENCODER;
   }
 
@@ -39,7 +40,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<User> getDecoder() {
+  public static BinaryMessageDecoder<Survey> getDecoder() {
     return DECODER;
   }
 
@@ -48,12 +49,12 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<User> createDecoder(SchemaStore resolver) {
+  public static BinaryMessageDecoder<Survey> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this User to a ByteBuffer.
+   * Serializes this Survey to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -62,37 +63,40 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   /**
-   * Deserializes a User from a ByteBuffer.
+   * Deserializes a Survey from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a User instance decoded from the given buffer
+   * @return a Survey instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static User fromByteBuffer(
+  public static Survey fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
   private long id;
-  private java.lang.CharSequence name;
+  private long user_id;
   private java.lang.CharSequence email;
+  private java.lang.CharSequence best_actor_for_me;
 
   /**
    * Default constructor.  Note that this does not initialize fields
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public User() {}
+  public Survey() {}
 
   /**
    * All-args constructor.
    * @param id The new value for id
-   * @param name The new value for name
+   * @param user_id The new value for user_id
    * @param email The new value for email
+   * @param best_actor_for_me The new value for best_actor_for_me
    */
-  public User(java.lang.Long id, java.lang.CharSequence name, java.lang.CharSequence email) {
+  public Survey(java.lang.Long id, java.lang.Long user_id, java.lang.CharSequence email, java.lang.CharSequence best_actor_for_me) {
     this.id = id;
-    this.name = name;
+    this.user_id = user_id;
     this.email = email;
+    this.best_actor_for_me = best_actor_for_me;
   }
 
   @Override
@@ -106,8 +110,9 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
-    case 1: return name;
+    case 1: return user_id;
     case 2: return email;
+    case 3: return best_actor_for_me;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -118,8 +123,9 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.Long)value$; break;
-    case 1: name = (java.lang.CharSequence)value$; break;
+    case 1: user_id = (java.lang.Long)value$; break;
     case 2: email = (java.lang.CharSequence)value$; break;
+    case 3: best_actor_for_me = (java.lang.CharSequence)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -142,20 +148,20 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   /**
-   * Gets the value of the 'name' field.
-   * @return The value of the 'name' field.
+   * Gets the value of the 'user_id' field.
+   * @return The value of the 'user_id' field.
    */
-  public java.lang.CharSequence getName() {
-    return name;
+  public long getUserId() {
+    return user_id;
   }
 
 
   /**
-   * Sets the value of the 'name' field.
+   * Sets the value of the 'user_id' field.
    * @param value the value to set.
    */
-  public void setName(java.lang.CharSequence value) {
-    this.name = value;
+  public void setUserId(long value) {
+    this.user_id = value;
   }
 
   /**
@@ -176,49 +182,67 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   /**
-   * Creates a new User RecordBuilder.
-   * @return A new User RecordBuilder
+   * Gets the value of the 'best_actor_for_me' field.
+   * @return The value of the 'best_actor_for_me' field.
    */
-  public static com.davidosantos.kafka.kafka.User.Builder newBuilder() {
-    return new com.davidosantos.kafka.kafka.User.Builder();
+  public java.lang.CharSequence getBestActorForMe() {
+    return best_actor_for_me;
+  }
+
+
+  /**
+   * Sets the value of the 'best_actor_for_me' field.
+   * @param value the value to set.
+   */
+  public void setBestActorForMe(java.lang.CharSequence value) {
+    this.best_actor_for_me = value;
   }
 
   /**
-   * Creates a new User RecordBuilder by copying an existing Builder.
+   * Creates a new Survey RecordBuilder.
+   * @return A new Survey RecordBuilder
+   */
+  public static com.davidosantos.kafka.kafka.Survey.Builder newBuilder() {
+    return new com.davidosantos.kafka.kafka.Survey.Builder();
+  }
+
+  /**
+   * Creates a new Survey RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new User RecordBuilder
+   * @return A new Survey RecordBuilder
    */
-  public static com.davidosantos.kafka.kafka.User.Builder newBuilder(com.davidosantos.kafka.kafka.User.Builder other) {
+  public static com.davidosantos.kafka.kafka.Survey.Builder newBuilder(com.davidosantos.kafka.kafka.Survey.Builder other) {
     if (other == null) {
-      return new com.davidosantos.kafka.kafka.User.Builder();
+      return new com.davidosantos.kafka.kafka.Survey.Builder();
     } else {
-      return new com.davidosantos.kafka.kafka.User.Builder(other);
+      return new com.davidosantos.kafka.kafka.Survey.Builder(other);
     }
   }
 
   /**
-   * Creates a new User RecordBuilder by copying an existing User instance.
+   * Creates a new Survey RecordBuilder by copying an existing Survey instance.
    * @param other The existing instance to copy.
-   * @return A new User RecordBuilder
+   * @return A new Survey RecordBuilder
    */
-  public static com.davidosantos.kafka.kafka.User.Builder newBuilder(com.davidosantos.kafka.kafka.User other) {
+  public static com.davidosantos.kafka.kafka.Survey.Builder newBuilder(com.davidosantos.kafka.kafka.Survey other) {
     if (other == null) {
-      return new com.davidosantos.kafka.kafka.User.Builder();
+      return new com.davidosantos.kafka.kafka.Survey.Builder();
     } else {
-      return new com.davidosantos.kafka.kafka.User.Builder(other);
+      return new com.davidosantos.kafka.kafka.Survey.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for User instances.
+   * RecordBuilder for Survey instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<User>
-    implements org.apache.avro.data.RecordBuilder<User> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Survey>
+    implements org.apache.avro.data.RecordBuilder<Survey> {
 
     private long id;
-    private java.lang.CharSequence name;
+    private long user_id;
     private java.lang.CharSequence email;
+    private java.lang.CharSequence best_actor_for_me;
 
     /** Creates a new Builder */
     private Builder() {
@@ -229,39 +253,47 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.davidosantos.kafka.kafka.User.Builder other) {
+    private Builder(com.davidosantos.kafka.kafka.Survey.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.name)) {
-        this.name = data().deepCopy(fields()[1].schema(), other.name);
+      if (isValidValue(fields()[1], other.user_id)) {
+        this.user_id = data().deepCopy(fields()[1].schema(), other.user_id);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
       if (isValidValue(fields()[2], other.email)) {
         this.email = data().deepCopy(fields()[2].schema(), other.email);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
+      if (isValidValue(fields()[3], other.best_actor_for_me)) {
+        this.best_actor_for_me = data().deepCopy(fields()[3].schema(), other.best_actor_for_me);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
     }
 
     /**
-     * Creates a Builder by copying an existing User instance
+     * Creates a Builder by copying an existing Survey instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.davidosantos.kafka.kafka.User other) {
+    private Builder(com.davidosantos.kafka.kafka.Survey other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.name)) {
-        this.name = data().deepCopy(fields()[1].schema(), other.name);
+      if (isValidValue(fields()[1], other.user_id)) {
+        this.user_id = data().deepCopy(fields()[1].schema(), other.user_id);
         fieldSetFlags()[1] = true;
       }
       if (isValidValue(fields()[2], other.email)) {
         this.email = data().deepCopy(fields()[2].schema(), other.email);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.best_actor_for_me)) {
+        this.best_actor_for_me = data().deepCopy(fields()[3].schema(), other.best_actor_for_me);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -279,7 +311,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.davidosantos.kafka.kafka.User.Builder setId(long value) {
+    public com.davidosantos.kafka.kafka.Survey.Builder setId(long value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -299,47 +331,46 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public com.davidosantos.kafka.kafka.User.Builder clearId() {
+    public com.davidosantos.kafka.kafka.Survey.Builder clearId() {
       fieldSetFlags()[0] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'name' field.
+      * Gets the value of the 'user_id' field.
       * @return The value.
       */
-    public java.lang.CharSequence getName() {
-      return name;
+    public long getUserId() {
+      return user_id;
     }
 
 
     /**
-      * Sets the value of the 'name' field.
-      * @param value The value of 'name'.
+      * Sets the value of the 'user_id' field.
+      * @param value The value of 'user_id'.
       * @return This builder.
       */
-    public com.davidosantos.kafka.kafka.User.Builder setName(java.lang.CharSequence value) {
+    public com.davidosantos.kafka.kafka.Survey.Builder setUserId(long value) {
       validate(fields()[1], value);
-      this.name = value;
+      this.user_id = value;
       fieldSetFlags()[1] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'name' field has been set.
-      * @return True if the 'name' field has been set, false otherwise.
+      * Checks whether the 'user_id' field has been set.
+      * @return True if the 'user_id' field has been set, false otherwise.
       */
-    public boolean hasName() {
+    public boolean hasUserId() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'name' field.
+      * Clears the value of the 'user_id' field.
       * @return This builder.
       */
-    public com.davidosantos.kafka.kafka.User.Builder clearName() {
-      name = null;
+    public com.davidosantos.kafka.kafka.Survey.Builder clearUserId() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -358,7 +389,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'email'.
       * @return This builder.
       */
-    public com.davidosantos.kafka.kafka.User.Builder setEmail(java.lang.CharSequence value) {
+    public com.davidosantos.kafka.kafka.Survey.Builder setEmail(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.email = value;
       fieldSetFlags()[2] = true;
@@ -378,20 +409,61 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'email' field.
       * @return This builder.
       */
-    public com.davidosantos.kafka.kafka.User.Builder clearEmail() {
+    public com.davidosantos.kafka.kafka.Survey.Builder clearEmail() {
       email = null;
       fieldSetFlags()[2] = false;
       return this;
     }
 
+    /**
+      * Gets the value of the 'best_actor_for_me' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getBestActorForMe() {
+      return best_actor_for_me;
+    }
+
+
+    /**
+      * Sets the value of the 'best_actor_for_me' field.
+      * @param value The value of 'best_actor_for_me'.
+      * @return This builder.
+      */
+    public com.davidosantos.kafka.kafka.Survey.Builder setBestActorForMe(java.lang.CharSequence value) {
+      validate(fields()[3], value);
+      this.best_actor_for_me = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'best_actor_for_me' field has been set.
+      * @return True if the 'best_actor_for_me' field has been set, false otherwise.
+      */
+    public boolean hasBestActorForMe() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'best_actor_for_me' field.
+      * @return This builder.
+      */
+    public com.davidosantos.kafka.kafka.Survey.Builder clearBestActorForMe() {
+      best_actor_for_me = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
-    public User build() {
+    public Survey build() {
       try {
-        User record = new User();
+        Survey record = new Survey();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Long) defaultValue(fields()[0]);
-        record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.user_id = fieldSetFlags()[1] ? this.user_id : (java.lang.Long) defaultValue(fields()[1]);
         record.email = fieldSetFlags()[2] ? this.email : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.best_actor_for_me = fieldSetFlags()[3] ? this.best_actor_for_me : (java.lang.CharSequence) defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -402,8 +474,8 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<User>
-    WRITER$ = (org.apache.avro.io.DatumWriter<User>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<Survey>
+    WRITER$ = (org.apache.avro.io.DatumWriter<Survey>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -411,8 +483,8 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<User>
-    READER$ = (org.apache.avro.io.DatumReader<User>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<Survey>
+    READER$ = (org.apache.avro.io.DatumReader<Survey>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
@@ -426,9 +498,11 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   {
     out.writeLong(this.id);
 
-    out.writeString(this.name);
+    out.writeLong(this.user_id);
 
     out.writeString(this.email);
+
+    out.writeString(this.best_actor_for_me);
 
   }
 
@@ -439,23 +513,29 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     if (fieldOrder == null) {
       this.id = in.readLong();
 
-      this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
+      this.user_id = in.readLong();
 
       this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
 
+      this.best_actor_for_me = in.readString(this.best_actor_for_me instanceof Utf8 ? (Utf8)this.best_actor_for_me : null);
+
     } else {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readLong();
           break;
 
         case 1:
-          this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
+          this.user_id = in.readLong();
           break;
 
         case 2:
           this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
+          break;
+
+        case 3:
+          this.best_actor_for_me = in.readString(this.best_actor_for_me instanceof Utf8 ? (Utf8)this.best_actor_for_me : null);
           break;
 
         default:
